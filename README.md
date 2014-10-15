@@ -1,4 +1,4 @@
 AddressesClassifier
 ===================
 
-Addresses classifier Russian
+Russian classifier addresses KLADR
