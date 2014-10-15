@@ -1,0 +1,9 @@
+E:\Projects\Strill\Addresses\AddressesClassifier\AddressesClassifier\bin\Debug\AddressesClassifier.dll
+E:\Projects\Strill\Addresses\AddressesClassifier\AddressesClassifier\bin\Debug\AddressesClassifier.pdb
+E:\Projects\Strill\Addresses\AddressesClassifier\AddressesClassifier\bin\Debug\NDbfReaderEx.dll
+E:\Projects\Strill\Addresses\AddressesClassifier\AddressesClassifier\bin\Debug\NDbfReaderEx.xml
+E:\Projects\Strill\Addresses\AddressesClassifier\AddressesClassifier\obj\Debug\AddressesClassifier.dll
+E:\Projects\Strill\Addresses\AddressesClassifier\AddressesClassifier\obj\Debug\AddressesClassifier.pdb
+E:\Projects\Strill\Addresses\AddressesClassifier\AddressesClassifier\bin\Debug\Ninject.dll
+E:\Projects\Strill\Addresses\AddressesClassifier\AddressesClassifier\bin\Debug\Ninject.xml
+E:\Projects\Strill\Addresses\AddressesClassifier\AddressesClassifier\obj\Debug\AddressesClassifier.csprojResolveAssemblyReference.cache
