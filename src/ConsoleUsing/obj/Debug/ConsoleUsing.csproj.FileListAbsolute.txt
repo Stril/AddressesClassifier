@@ -10,3 +10,15 @@ E:\Projects\Strill\Addresses\AddressesClassifier\ConsoleUsing\bin\Debug\Ninject.
 E:\Projects\Strill\Addresses\AddressesClassifier\ConsoleUsing\bin\Debug\Ninject.xml
 E:\Projects\Strill\Addresses\AddressesClassifier\ConsoleUsing\bin\Debug\AddressesClassifier.dll
 E:\Projects\Strill\Addresses\AddressesClassifier\ConsoleUsing\bin\Debug\AddressesClassifier.pdb
+E:\Projects\Strill\GitHub\AddressesClassifier\src\ConsoleUsing\bin\Debug\ConsoleUsing.exe.config
+E:\Projects\Strill\GitHub\AddressesClassifier\src\ConsoleUsing\obj\Debug\ConsoleUsing.exe
+E:\Projects\Strill\GitHub\AddressesClassifier\src\ConsoleUsing\obj\Debug\ConsoleUsing.pdb
+E:\Projects\Strill\GitHub\AddressesClassifier\src\ConsoleUsing\bin\Debug\ConsoleUsing.exe
+E:\Projects\Strill\GitHub\AddressesClassifier\src\ConsoleUsing\bin\Debug\ConsoleUsing.pdb
+E:\Projects\Strill\GitHub\AddressesClassifier\src\ConsoleUsing\bin\Debug\AddressesClassifier.dll
+E:\Projects\Strill\GitHub\AddressesClassifier\src\ConsoleUsing\bin\Debug\Ninject.dll
+E:\Projects\Strill\GitHub\AddressesClassifier\src\ConsoleUsing\bin\Debug\NDbfReaderEx.dll
+E:\Projects\Strill\GitHub\AddressesClassifier\src\ConsoleUsing\bin\Debug\AddressesClassifier.pdb
+E:\Projects\Strill\GitHub\AddressesClassifier\src\ConsoleUsing\bin\Debug\Ninject.xml
+E:\Projects\Strill\GitHub\AddressesClassifier\src\ConsoleUsing\bin\Debug\NDbfReaderEx.xml
+E:\Projects\Strill\GitHub\AddressesClassifier\src\ConsoleUsing\obj\Debug\ConsoleUsing.csprojResolveAssemblyReference.cache

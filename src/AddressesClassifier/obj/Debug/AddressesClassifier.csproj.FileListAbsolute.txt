@@ -7,3 +7,12 @@ E:\Projects\Strill\Addresses\AddressesClassifier\AddressesClassifier\obj\Debug\A
 E:\Projects\Strill\Addresses\AddressesClassifier\AddressesClassifier\bin\Debug\Ninject.dll
 E:\Projects\Strill\Addresses\AddressesClassifier\AddressesClassifier\bin\Debug\Ninject.xml
 E:\Projects\Strill\Addresses\AddressesClassifier\AddressesClassifier\obj\Debug\AddressesClassifier.csprojResolveAssemblyReference.cache
+E:\Projects\Strill\GitHub\AddressesClassifier\src\AddressesClassifier\bin\Debug\AddressesClassifier.dll
+E:\Projects\Strill\GitHub\AddressesClassifier\src\AddressesClassifier\bin\Debug\AddressesClassifier.pdb
+E:\Projects\Strill\GitHub\AddressesClassifier\src\AddressesClassifier\bin\Debug\NDbfReaderEx.dll
+E:\Projects\Strill\GitHub\AddressesClassifier\src\AddressesClassifier\bin\Debug\Ninject.dll
+E:\Projects\Strill\GitHub\AddressesClassifier\src\AddressesClassifier\bin\Debug\NDbfReaderEx.xml
+E:\Projects\Strill\GitHub\AddressesClassifier\src\AddressesClassifier\bin\Debug\Ninject.xml
+E:\Projects\Strill\GitHub\AddressesClassifier\src\AddressesClassifier\obj\Debug\AddressesClassifier.csprojResolveAssemblyReference.cache
+E:\Projects\Strill\GitHub\AddressesClassifier\src\AddressesClassifier\obj\Debug\AddressesClassifier.dll
+E:\Projects\Strill\GitHub\AddressesClassifier\src\AddressesClassifier\obj\Debug\AddressesClassifier.pdb
