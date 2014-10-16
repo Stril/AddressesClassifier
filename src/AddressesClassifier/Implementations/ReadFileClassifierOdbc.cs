@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data;
+using System.Data.Odbc;
 using System.Data.OleDb;
 using System.IO;
 using AddressesClassifier.Interfaces;
@@ -8,15 +9,15 @@ using AddressesClassifier.Services;
 
 namespace AddressesClassifier.Implementations
 {
-    internal class ReadFileClassifierOleDb : IReadFileClassifier
+    internal class ReadFileClassifierOdbc : IReadFileClassifier
     {
         private readonly string _folder;
-        
+        private readonly string _connectionString;
 
-        public ReadFileClassifierOleDb(string folder)
+        public ReadFileClassifierOdbc(string folder)
         {
             _folder = folder;
-            
+            _connectionString = @"Driver={Microsoft dBASE Driver (*.dbf)};DriverID=277;Dbq=" + _folder + "";
         }
 
         public DataTable ReadRegion(string code)
@@ -24,12 +25,7 @@ namespace AddressesClassifier.Implementations
             var file = FileService.GetKladrFileName(_folder);
             if (!File.Exists(file))
                 throw new FileNotFoundException(string.Format("Не найден файл адресного классификатора {0}", file));
-
-            var connection =
-                new OleDbConnection(
-                    string.Format(
-                        @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0};Extended Properties=DBASE IV;Persist Security Info=False;",
-                        _folder));
+            var connection = new OdbcConnection(_connectionString);
             connection.Open();
             var command = connection.CreateCommand();
             command.CommandText =
@@ -47,11 +43,7 @@ namespace AddressesClassifier.Implementations
             if (!File.Exists(file))
                 throw new FileNotFoundException(string.Format("Не найден файл адресного классификатора {0}", file));
 
-            var connection =
-                new OleDbConnection(
-                    string.Format(
-                        @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0};Extended Properties=DBASE IV;Persist Security Info=False;",
-                        _folder));
+            var connection = new OdbcConnection(_connectionString);
             connection.Open();
             var command = connection.CreateCommand();
             command.CommandText =
@@ -69,11 +61,7 @@ namespace AddressesClassifier.Implementations
             if (!File.Exists(file))
                 throw new FileNotFoundException(string.Format("Не найден файл адресного классификатора {0}", file));
 
-            var connection =
-                new OleDbConnection(
-                    string.Format(
-                        @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0};Extended Properties=DBASE IV;Persist Security Info=False;",
-                        _folder));
+            var connection = new OdbcConnection(_connectionString);
             connection.Open();
             var command = connection.CreateCommand();
             command.CommandText =
@@ -91,11 +79,7 @@ namespace AddressesClassifier.Implementations
             if (!File.Exists(file))
                 throw new FileNotFoundException(string.Format("Не найден файл адресного классификатора {0}", file));
 
-            var connection =
-                new OleDbConnection(
-                    string.Format(
-                        @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0};Extended Properties=DBASE IV;Persist Security Info=False;",
-                        _folder));
+            var connection = new OdbcConnection(_connectionString);
             connection.Open();
             var command = connection.CreateCommand();
             command.CommandText =
@@ -113,11 +97,7 @@ namespace AddressesClassifier.Implementations
             if (!File.Exists(file))
                 throw new FileNotFoundException(string.Format("Не найден файл адресного классификатора {0}", file));
 
-            var connection =
-                new OleDbConnection(
-                    string.Format(
-                        @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0};Extended Properties=DBASE IV;Persist Security Info=False;",
-                        _folder));
+            var connection = new OdbcConnection(_connectionString);
             connection.Open();
             var command = connection.CreateCommand();
             command.CommandText =
@@ -135,11 +115,7 @@ namespace AddressesClassifier.Implementations
             var file = FileService.GetKladrFileName(_folder);
             if (!File.Exists(file))
                 throw new FileNotFoundException(string.Format("Не найден файл адресного классификатора {0}", file));
-            var connection =
-                new OleDbConnection(
-                    string.Format(
-                        @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0};Extended Properties=DBASE IV;Persist Security Info=False;",
-                        _folder));
+            var connection = new OdbcConnection(_connectionString);
             connection.Open();
             var command = connection.CreateCommand();
             command.CommandText =
@@ -163,11 +139,7 @@ namespace AddressesClassifier.Implementations
             var file = FileService.GetKladrFileName(_folder);
             if (!File.Exists(file))
                 throw new FileNotFoundException(string.Format("Не найден файл адресного классификатора {0}", file));
-            var connection =
-                new OleDbConnection(
-                    string.Format(
-                        @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0};Extended Properties=DBASE IV;Persist Security Info=False;",
-                        _folder));
+            var connection = new OdbcConnection(_connectionString);
             connection.Open();
             var command = connection.CreateCommand();
             command.CommandText =
@@ -192,11 +164,7 @@ namespace AddressesClassifier.Implementations
             if (!File.Exists(file))
                 throw new FileNotFoundException(string.Format("Не найден файл адресного классификатора {0}", file));
 
-            var connection =
-                new OleDbConnection(
-                    string.Format(
-                        @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0};Extended Properties=DBASE IV;Persist Security Info=False;",
-                        _folder));
+            var connection = new OdbcConnection(_connectionString);
             connection.Open();
             var command = connection.CreateCommand();
             command.CommandText =
@@ -221,11 +189,7 @@ namespace AddressesClassifier.Implementations
             if (!File.Exists(file))
                 throw new FileNotFoundException(string.Format("Не найден файл адресного классификатора {0}", file));
 
-            var connection =
-                new OleDbConnection(
-                    string.Format(
-                        @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0};Extended Properties=DBASE IV;Persist Security Info=False;",
-                        _folder));
+            var connection = new OdbcConnection(_connectionString);
             connection.Open();
             var command = connection.CreateCommand();
             command.CommandText =
@@ -250,11 +214,7 @@ namespace AddressesClassifier.Implementations
             if (!File.Exists(file))
                 throw new FileNotFoundException(string.Format("Не найден файл адресного классификатора {0}", file));
 
-            var connection =
-                new OleDbConnection(
-                    string.Format(
-                        @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0};Extended Properties=DBASE IV;Persist Security Info=False;",
-                        _folder));
+            var connection = new OdbcConnection(_connectionString);
             connection.Open();
             var command = connection.CreateCommand();
             command.CommandText =

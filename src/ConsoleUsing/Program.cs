@@ -7,7 +7,8 @@ namespace ConsoleUsing
 {
     public static class Program
     {
-        private const string Folder = @"E:\Projects\Strill\Addresses\base";
+        //private const string Folder = @"E:\projects\strill\adresses\base";
+        private const string Folder = @"C:\db\Base";
 
         private static void Main()
         {
@@ -20,12 +21,11 @@ namespace ConsoleUsing
             {
                 Console.WriteLine(ex);
             }
-
             Console.ReadLine();
         }
 
         private static void ReadNdbfDt()
-        { 
+        {
             var date = DateTime.Now;
             var reader = new ReadKladr(Folder);
             var db = reader.NdbfReader().ReadRegion("01");
@@ -41,9 +41,7 @@ namespace ConsoleUsing
             var reader = new ReadKladr(Folder);
             var db = reader.OleDbReader().ReadBaseInfoModel();
             foreach (var item in db)
-            {
                 Console.WriteLine("{0} {1} {2} {3}", item.Code, item.Contraction, item.Name, item.TrimCode);
-            }
             Console.WriteLine(DateTime.Now - date);
         }
 
@@ -66,14 +64,12 @@ namespace ConsoleUsing
             };
             connection.Open();
             var reader = connection.CreateCommand();
-            reader.CommandText = "SELECT [name], [code], [socr], LEFT([code],2) as TrimCode FROM kladr where [code] LIKE '%00000000000'";
+            reader.CommandText =
+                "SELECT [name], [code], [socr], LEFT([code],2) as TrimCode FROM kladr where [code] LIKE '%00000000000'";
             using (var dataReader = reader.ExecuteReader())
-            {
                 while (dataReader.Read())
-                {
-                    Console.WriteLine("{0} {1} {2} {3}", dataReader["code"], dataReader["name"], dataReader["socr"], dataReader["TrimCode"]);
-                }
-            }
+                    Console.WriteLine("{0} {1} {2} {3}", dataReader["code"], dataReader["name"], dataReader["socr"],
+                        dataReader["TrimCode"]);
             var t = DateTime.Now - date;
             Console.WriteLine(t);
         }

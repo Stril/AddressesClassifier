@@ -52,8 +52,10 @@
     <Compile Include="Implementations\ReadFileClassifierOleDb.cs" />
     <Compile Include="Implementations\GettingDataKladr.cs" />
     <Compile Include="Interfaces\IParsingAddress.cs" />
+    <Compile Include="Implementations\ReadFileClassifierOdbc.cs" />
     <Compile Include="NinjectModules\AddressesServiceNModule.cs" />
     <Compile Include="NinjectModules\ReadKladrNdbfNModule.cs" />
+    <Compile Include="NinjectModules\ReadKladrOdbcNModule.cs" />
     <Compile Include="NinjectModules\ReadKladrOleDbNModule.cs" />
     <Compile Include="ReadKladr.cs" />
     <Compile Include="Services\DataService.cs" />
