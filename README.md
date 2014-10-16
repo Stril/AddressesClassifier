@@ -5,6 +5,6 @@ Net библиотека для чения файлов классификато
 
 Чтение адресного классификатора КЛАДР из файлов .dbf двумя способами:
 
-1. OLEDB с использвоанием провайдера Microsoft.Jet.OLEDB.4.0.
+1. OLEDB с использованием провайдера Microsoft.Jet.OLEDB.4.0.
 
 2. Используя пакет NDbfReaderEx от emelhu: https://www.nuget.org/packages/NDbfReaderEx/
