@@ -4,11 +4,11 @@ using Ninject;
 
 namespace AddressesClassifier
 {
-    public class ReadKladr
+    public class ReaderKladr
     {
         private readonly string _folder;
 
-        public ReadKladr(string folder)
+        public ReaderKladr(string folder)
         {
             _folder = folder;
         }

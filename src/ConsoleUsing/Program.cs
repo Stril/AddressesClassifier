@@ -27,7 +27,7 @@ namespace ConsoleUsing
         private static void ReadNdbfDt()
         {
             var date = DateTime.Now;
-            var reader = new ReadKladr(Folder);
+            var reader = new ReaderKladr(Folder);
             var db = reader.NdbfReader().ReadRegion("01");
             for (var i = 0; i < db.Rows.Count; i++)
                 Console.WriteLine("{0} {1} {2} {3}", db.Rows[i]["code"], db.Rows[i]["name"], db.Rows[i]["trimcode"],
@@ -38,7 +38,7 @@ namespace ConsoleUsing
         private static void ReadOleDbModel()
         {
             var date = DateTime.Now;
-            var reader = new ReadKladr(Folder);
+            var reader = new ReaderKladr(Folder);
             var db = reader.OleDbReader().ReadBaseInfoModel();
             foreach (var item in db)
                 Console.WriteLine("{0} {1} {2} {3}", item.Code, item.Contraction, item.Name, item.TrimCode);
@@ -47,7 +47,7 @@ namespace ConsoleUsing
 
         private static void ReadNdbfModel()
         {
-            var reader = new ReadKladr(Folder);
+            var reader = new ReaderKladr(Folder);
             var db = reader.NdbfReader().ReadBaseInfoModel();
 
             Console.WriteLine("Count " + db.Count());
