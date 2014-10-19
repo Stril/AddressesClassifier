@@ -24,7 +24,7 @@ namespace AddressesClassifier.Implementations
             var file = FileService.GetKladrFileName(_folder);
             if (!File.Exists(file))
                 throw new FileNotFoundException(string.Format("Не найден файл адресного классификатора {0}", file));
-
+            code = DataService.TrimKladrCode(code);
             var connection =
                 new OleDbConnection(
                     string.Format(
@@ -68,7 +68,7 @@ namespace AddressesClassifier.Implementations
             var file = FileService.GetStreetFileNmae(_folder);
             if (!File.Exists(file))
                 throw new FileNotFoundException(string.Format("Не найден файл адресного классификатора {0}", file));
-
+            code = DataService.TrimKladrCode(code);
             var connection =
                 new OleDbConnection(
                     string.Format(
@@ -135,6 +135,7 @@ namespace AddressesClassifier.Implementations
             var file = FileService.GetKladrFileName(_folder);
             if (!File.Exists(file))
                 throw new FileNotFoundException(string.Format("Не найден файл адресного классификатора {0}", file));
+            code = DataService.TrimKladrCode(code);
             var connection =
                 new OleDbConnection(
                     string.Format(
@@ -191,7 +192,7 @@ namespace AddressesClassifier.Implementations
             var file = FileService.GetStreetFileNmae(_folder);
             if (!File.Exists(file))
                 throw new FileNotFoundException(string.Format("Не найден файл адресного классификатора {0}", file));
-
+            code = DataService.TrimKladrCode(code);
             var connection =
                 new OleDbConnection(
                     string.Format(

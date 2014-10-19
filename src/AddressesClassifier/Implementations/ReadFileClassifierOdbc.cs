@@ -24,6 +24,7 @@ namespace AddressesClassifier.Implementations
             var file = FileService.GetKladrFileName(_folder);
             if (!File.Exists(file))
                 throw new FileNotFoundException(string.Format("Не найден файл адресного классификатора {0}", file));
+            code = DataService.TrimKladrCode(code);
             var connection = new OdbcConnection(_connectionString);
             connection.Open();
             var command = connection.CreateCommand();
@@ -59,7 +60,7 @@ namespace AddressesClassifier.Implementations
             var file = FileService.GetStreetFileNmae(_folder);
             if (!File.Exists(file))
                 throw new FileNotFoundException(string.Format("Не найден файл адресного классификатора {0}", file));
-
+            code = DataService.TrimKladrCode(code);
             var connection = new OdbcConnection(_connectionString);
             connection.Open();
             var command = connection.CreateCommand();
@@ -114,6 +115,7 @@ namespace AddressesClassifier.Implementations
             var file = FileService.GetKladrFileName(_folder);
             if (!File.Exists(file))
                 throw new FileNotFoundException(string.Format("Не найден файл адресного классификатора {0}", file));
+            code = DataService.TrimKladrCode(code);
             var connection = new OdbcConnection(_connectionString);
             connection.Open();
             var command = connection.CreateCommand();
@@ -162,7 +164,7 @@ namespace AddressesClassifier.Implementations
             var file = FileService.GetStreetFileNmae(_folder);
             if (!File.Exists(file))
                 throw new FileNotFoundException(string.Format("Не найден файл адресного классификатора {0}", file));
-
+            code = DataService.TrimKladrCode(code);
             var connection = new OdbcConnection(_connectionString);
             connection.Open();
             var command = connection.CreateCommand();

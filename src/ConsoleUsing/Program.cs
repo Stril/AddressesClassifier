@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Data.Odbc;
 using System.Linq;
 using AddressesClassifier;
 
@@ -14,7 +13,6 @@ namespace ConsoleUsing
         {
             try
             {
-                ReadOdbc();
                 ReadOleDbModel();
             }
             catch (Exception ex)
@@ -53,25 +51,6 @@ namespace ConsoleUsing
             Console.WriteLine("Count " + db.Count());
             var item = db.FirstOrDefault();
             Console.WriteLine("{0} {1} {2} {3}", item.Code, item.Contraction, item.Name, item.TrimCode);
-        }
-
-        private static void ReadOdbc()
-        {
-            var date = DateTime.Now;
-            var connection = new OdbcConnection
-            {
-                ConnectionString = @"Driver={Microsoft dBASE Driver (*.dbf)};DriverID=277;Dbq=" + Folder + ""
-            };
-            connection.Open();
-            var reader = connection.CreateCommand();
-            reader.CommandText =
-                "SELECT [name], [code], [socr], LEFT([code],2) as TrimCode FROM kladr where [code] LIKE '%00000000000'";
-            using (var dataReader = reader.ExecuteReader())
-                while (dataReader.Read())
-                    Console.WriteLine("{0} {1} {2} {3}", dataReader["code"], dataReader["name"], dataReader["socr"],
-                        dataReader["TrimCode"]);
-            var t = DateTime.Now - date;
-            Console.WriteLine(t);
         }
     }
 }

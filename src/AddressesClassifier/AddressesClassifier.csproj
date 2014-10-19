@@ -57,6 +57,7 @@
     <Compile Include="NinjectModules\ReadKladrNdbfNModule.cs" />
     <Compile Include="NinjectModules\ReadKladrOdbcNModule.cs" />
     <Compile Include="NinjectModules\ReadKladrOleDbNModule.cs" />
+    <Compile Include="Queries.cs" />
     <Compile Include="ReadKladr.cs" />
     <Compile Include="Services\DataService.cs" />
     <Compile Include="Services\DbfService.cs" />

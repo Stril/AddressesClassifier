@@ -23,7 +23,7 @@ namespace AddressesClassifier.Implementations
             var file = FileService.GetKladrFileName(_folder);
             if (!FileService.CheckKladrFile(_folder))
                 throw new FileNotFoundException("Не найден файл адресного классификатора " + _folder);
-
+            code = DataService.TrimKladrCode(code);
             var dataTable = DataService.GetDataTableStandart();
             using (var table = DbfTable.Open(file, Encoding.GetEncoding(866)))
             using (var data = table.AsDataTable())
@@ -48,7 +48,7 @@ namespace AddressesClassifier.Implementations
             var file = FileService.GetStreetFileNmae(_folder);
             if (!FileService.CheckStreetFile(_folder))
                 throw new FileNotFoundException("Не найден файл адресного классификатора " + _folder);
-
+            code = DataService.TrimKladrCode(code);
             var dataTable = DataService.GetDataTableStandart();
             using (var table = DbfTable.Open(file, Encoding.GetEncoding(866)))
             using (var data = table.AsDataTable())
@@ -91,7 +91,7 @@ namespace AddressesClassifier.Implementations
             var file = FileService.GetKladrFileName(_folder);
             if (!FileService.CheckKladrFile(_folder))
                 throw new FileNotFoundException("Не найден файл адресного классификатора " + _folder);
-
+            code = DataService.TrimKladrCode(code);
             var result = new List<Region>();
 
             using (var table = DbfTable.Open(file, Encoding.GetEncoding(866)))
@@ -132,7 +132,7 @@ namespace AddressesClassifier.Implementations
             var file = FileService.GetStreetFileNmae(_folder);
             if (!FileService.CheckStreetFile(_folder))
                 throw new FileNotFoundException("Не найден файл адресного классификатора " + _folder);
-
+            code = DataService.TrimKladrCode(code);
             var result = new List<Street>();
             using (var table = DbfTable.Open(file, Encoding.GetEncoding(866)))
             using (var data = table.AsDataTable())

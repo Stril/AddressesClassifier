@@ -29,7 +29,7 @@ namespace AddressesClassifierTests.InterfacesTests
         [Test]
         public void ReadRegion83_CountIs56_ReturnTrue()
         {
-            var data = _readerKladr.OdbcReader().ReadRegion("83");
+            var data = _readerKladr.OdbcReader().ReadRegion("8300000000000");
             Assert.IsTrue(data != null && data.Rows.Count == 56);
         }
 
@@ -50,14 +50,14 @@ namespace AddressesClassifierTests.InterfacesTests
         [Test]
         public void ReadRegionModel83_CountIs56_ReturnTrue()
         {
-            var data = _readerKladr.OdbcReader().ReadRegionModel("83");
+            var data = _readerKladr.OdbcReader().ReadRegionModel("8300000000000");
             Assert.IsTrue(data.Count() == 56);
         }
 
         [Test]
         public void ReadRegionModel99_CountIs3_ReturnTrue()
         {
-            var data = _readerKladr.OdbcReader().ReadRegionModel("99");
+            var data = _readerKladr.OdbcReader().ReadRegionModel("9900000000000");
             Assert.IsTrue(data.Count() == 3);
         }
 
@@ -72,7 +72,7 @@ namespace AddressesClassifierTests.InterfacesTests
         public void ReadRegionBaseInfoModel_CheckNameRegion99_ReturnTrue()
         {
             var data = _readerKladr.OdbcReader().ReadBaseInfoModel();
-            var item = data.FirstOrDefault(p => p.Code.StartsWith("99"));
+            var item = data.FirstOrDefault(p => p.Code.StartsWith("9900000000000"));
             Assert.IsTrue(item != null && item.Name == "Байконур");
         }
 
@@ -86,7 +86,7 @@ namespace AddressesClassifierTests.InterfacesTests
         [Test]
         public void ReadStreetsByRegion83_CountIs320_ReturnTrue()
         {
-            var data = _readerKladr.OdbcReader().ReadStreetsByRegion("83");
+            var data = _readerKladr.OdbcReader().ReadStreetsByRegion("8300000000000");
             Assert.IsTrue(data.Rows.Count == 320);
         }
 
