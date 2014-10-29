@@ -51,9 +51,6 @@
     <Compile Include="InterfacesTests\InterfaceNdbfReadTests.cs" />
     <Compile Include="InterfacesTests\InterfaceOdbcReadTests.cs" />
     <Compile Include="InterfacesTests\InterfaceOleDbReadTests.cs" />
-    <Compile Include="ModelsTests\RegionModelTests.cs" />
-    <Compile Include="ModelsTests\StreetModelTests.cs" />
-    <Compile Include="ModelsTests\TerritoryModelTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServicesTests\DataServicesTests.cs" />
   </ItemGroup>

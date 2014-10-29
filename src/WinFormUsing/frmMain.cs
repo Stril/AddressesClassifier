@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using AddressesClassifier.Models;
@@ -10,7 +11,6 @@ namespace WinFormUsing
     {
         private readonly ModelContract _modelContract;
         private const string KladrPath = @"E:\Projects\Strill\Addresses\Base";
-        private bool itLoad;
 
         public frmMain()
         {
@@ -32,103 +32,246 @@ namespace WinFormUsing
 
         private void btnLoad_Click(object sender, System.EventArgs e)
         {
-            ClearField(new[] {fldRegion, fldCity, fldDistrict, fldStreet, fldTown});
+            try
+            {
+                ClearField(new[] {fldRegion, fldCity, fldDistrict, fldStreet, fldSettlementTown});
 
-            _modelContract.ReadFileClassifier = WinFormUsingServices.GetReadFileClassifier(_modelContract);
-            fldRegion.DataSource = _modelContract.ReadFileClassifier.ReadBaseInfoModel();
+                _modelContract.ReadFileClassifier = WinFormUsingServices.GetReadFileClassifier(_modelContract);
+                fldRegion.DataSource = _modelContract.ReadFileClassifier.ReadBaseInfoModel()
+                    .OrderBy(p => p.Name).ToList();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+        private void fldRegion_SelectedValueChanged(object sender, System.EventArgs e)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /* Получение районов */
+
+        private void btnGetDistricts_Click(object sender, System.EventArgs e)
+        {
+            try
+            {
+                var model = fldRegion.SelectedItem as Territory;
+                if (model == null)
+                {
+                    MessageBox.Show("Не выбран регион");
+                    return;
+                }
+
+                ClearField(new[] {fldCity, fldDistrict, fldStreet, fldSettlementTown});
+
+                /* Если регион - федеральный город */
+                if (model.Code.StartsWith("99")
+                    || model.Code.StartsWith("77")
+                    || model.Code.StartsWith("78")
+                    || model.Code.StartsWith("92"))
+                {
+                    MessageBox.Show("У федерального города нет муниципальных районов");
+                    return;
+                }
+
+                var data = _modelContract.ReadFileClassifier.ReadRegionModel(model.Code)
+                    .AsQueryable();
+                fldDistrict.DataSource = _modelContract.GettingDataKladr.GetDistrictByRegion(data, model.Code)
+                    .OrderBy(p => p.Name).ToList();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /* Получение городов региона */
+
+        private void btnGetCity_Click(object sender, System.EventArgs e)
+        {
+            try
+            {
+                var model = fldRegion.SelectedItem as Territory;
+                if (model == null)
+                {
+                    MessageBox.Show("Не выбран регион");
+                    return;
+                }
+
+                /* Если регион - федеральный город */
+                if (model.Code.StartsWith("99")
+                    || model.Code.StartsWith("77")
+                    || model.Code.StartsWith("78")
+                    || model.Code.StartsWith("92"))
+                {
+                    MessageBox.Show("У федерального города нет городов. Выберите подчиненные города или сразу улицу");
+                    return;
+                }
+
+                var data = _modelContract.ReadFileClassifier.ReadRegionModel(model.Code)
+                    .AsQueryable();
+                fldCity.DataSource = _modelContract.GettingDataKladr.GeTerritoriesByRegion(data, model.Code)
+                    .OrderBy(p => p.Name).ToList();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /* получение населенных пунктов административного округа или подчиненных городу */
+
+        private void btnGetSettlementTown_Click(object sender, System.EventArgs e)
+        {
+            try
+            {
+                var model = fldRegion.SelectedItem as Territory;
+                if (model == null)
+                {
+                    MessageBox.Show("Не выбран регион");
+                    return;
+                }
+
+                if (model.Code.StartsWith("99")
+                    || model.Code.StartsWith("77")
+                    || model.Code.StartsWith("78")
+                    || model.Code.StartsWith("92"))
+                {
+                    var data = _modelContract.ReadFileClassifier.ReadRegionModel(model.Code)
+                        .AsQueryable();
+                    fldSettlementTown.DataSource = _modelContract.GettingDataKladr.GetSettlementTownsByCity(data, model.Code)
+                        .OrderBy(p => p.Name).ToList();
+                    return;
+                }
+
+                var region = fldDistrict.SelectedItem as Region;
+                if (region != null)
+                {
+                    var data = _modelContract.ReadFileClassifier.ReadRegionModel(region.Code)
+                        .AsQueryable();
+                    fldSettlementTown.DataSource = _modelContract.GettingDataKladr.GetTownsByDistrict(data, region.Code)
+                        .OrderBy(p => p.Name).ToList();
+                    return;
+                }
+
+                var city = fldCity.SelectedItem as Region;
+                if (city != null)
+                {
+                    var data = _modelContract.ReadFileClassifier.ReadRegionModel(city.Code)
+                        .AsQueryable();
+                    fldSettlementTown.DataSource = _modelContract.GettingDataKladr.GetSettlementTownsByCity(data, city.Code)
+                        .OrderBy(p => p.Name).ToList();
+                    return;
+                }
+
+                MessageBox.Show("Ничего не нашлось =(");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+        /* Получение улиц */
+
+        private void btnGetStreet_Click(object sender, System.EventArgs e)
+        {
+            try
+            {
+                var settlementCity = fldSettlementTown.SelectedItem as Region;
+                if (settlementCity != null)
+                {
+                    var streets = _modelContract.ReadFileClassifier.ReadStreetsByRegionModel(settlementCity.Code)
+                        .AsQueryable();
+                    fldStreet.DataSource = _modelContract.GettingDataKladr.GetStreets(streets, settlementCity.Code)
+                        .OrderBy(p => p.Name).ToList();
+                    return;
+                }
+
+                var model = fldRegion.SelectedItem as Territory;
+                if (model == null)
+                {
+                    MessageBox.Show("Не выбран регион");
+                    return;
+                }
+                /* Если регион - федеральный город */
+                if (model.Code.StartsWith("99")
+                    || model.Code.StartsWith("77")
+                    || model.Code.StartsWith("78")
+                    || model.Code.StartsWith("92"))
+                {
+                    var streets = _modelContract.ReadFileClassifier.ReadStreetsByRegionModel(model.Code)
+                        .AsQueryable();
+                    fldStreet.DataSource = _modelContract.GettingDataKladr.GetStreetsByRegion(streets, model.Code)
+                        .OrderBy(p => p.Name).ToList();
+                    return;
+                }
+
+                var city = fldCity.SelectedItem as Region;
+                if (city != null)
+                {
+                    var streets = _modelContract.ReadFileClassifier.ReadStreetsByRegionModel(city.Code)
+                        .AsQueryable();
+                    fldStreet.DataSource = _modelContract.GettingDataKladr.GetStreets(streets, city.Code)
+                        .OrderBy(p => p.Name).ToList();
+                    return;
+                }
+
+                MessageBox.Show("Ничего не нашлось =(");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private static void ClearField(IEnumerable<ComboBox> comboBox)
         {
-            foreach (var box in comboBox)
-                box.DataSource = new List<Region>();
-        }
-
-        private void fldRegion_SelectedValueChanged(object sender, System.EventArgs e)
-        {
-            var model = fldRegion.SelectedItem as Territory;
-            ClearField(new[] {fldCity, fldDistrict, fldStreet, fldTown});
-            if (model == null) return;
-            /* Если регион - федеральный город */
-            if (model.Code.StartsWith("99")
-                || model.Code.StartsWith("77")
-                || model.Code.StartsWith("78")
-                || model.Code.StartsWith("92"))
+            try
             {
-                FillSettlementTowns(model);
-                FillRegionStreets(model);
+                foreach (var box in comboBox)
+                {
+                    box.DataSource = new List<Region>();
+                    box.SelectedItem = null;
+                    box.Text = null;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                FillDistrincts(model);
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void FillRegionStreets(Territory model)
+        private void dtnClearDistrict_Click(object sender, System.EventArgs e)
         {
-            var streets =
-                _modelContract.ReadFileClassifier.ReadStreetsByRegionModel(model.Code)
-                    .AsQueryable();
-            fldStreet.DataSource =
-                _modelContract.GettingDataKladr.GetStreetsByRegion(streets, model.Code)
-                    .OrderBy(p => p.Name)
-                    .ToList();
-            fldStreet.SelectedIndex = -1;
+            ClearField(new[] {fldDistrict});
         }
 
-        private void FillSettlementTowns(Territory model)
+        private void btnClearCity_Click(object sender, System.EventArgs e)
         {
-            var data = _modelContract.ReadFileClassifier.ReadRegionModel(model.Code).AsQueryable();
-            fldCity.DataSource =
-                _modelContract.GettingDataKladr.GetSettlementTownsByCity(data, model.Code).OrderBy(p => p.Name).ToList();
-            fldCity.SelectedIndex = -1;
+            ClearField(new[] {fldCity});
         }
 
-        private void FillDistrincts(Territory model)
+        private void btnClearSettlementTown_Click(object sender, System.EventArgs e)
         {
-            var data = _modelContract.ReadFileClassifier.ReadRegionModel(model.Code).AsQueryable();
-            fldDistrict.DataSource =
-                _modelContract.GettingDataKladr.GetDistrictByRegion(data, model.Code).OrderBy(p => p.Name).ToList();
-            fldDistrict.SelectedIndex = -1;
+            ClearField(new[] {fldSettlementTown});
         }
 
-        private void FillCities(Territory model)
+        private void btnClearStreet_Click(object sender, System.EventArgs e)
         {
-            var data = _modelContract.ReadFileClassifier.ReadRegionModel(model.Code).AsQueryable();
-            fldCity.DataSource =
-                _modelContract.GettingDataKladr.GetTownByRegion(data, model.Code).OrderBy(p => p.Name).ToList();
-        }
-
-        private void FillStreets(string cityCode)
-        {
-
-        }
-
-        private void fldDistrict_SelectedValueChanged(object sender, System.EventArgs e)
-        {
-            var model = fldRegion.SelectedItem as Territory;
-            if (model == null) return;
-            FillCities(model);
-        }
-
-        private void fldCity_SelectedValueChanged(object sender, System.EventArgs e)
-        {
-
-        }
-
-        private void fldTown_SelectedValueChanged(object sender, System.EventArgs e)
-        {
-
-        }
-
-        private void fldStreet_SelectedValueChanged(object sender, System.EventArgs e)
-        {
-
-        }
-
-        private void fldDistrict_SelectedIndexChanged(object sender, System.EventArgs e)
-        {
-
+            ClearField(new[] {fldStreet});
         }
     }
 }

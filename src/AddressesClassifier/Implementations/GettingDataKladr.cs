@@ -55,7 +55,7 @@ namespace AddressesClassifier.Implementations
                         (p.Code[8] != '0' || p.Code[9] != '0' || p.Code[10] != '0'));
         }
 
-        public IQueryable<Region> GetTownsByRegion(IQueryable<Region> inputQueryable, string code)
+        public IQueryable<Region> GetTownsByDistrict(IQueryable<Region> inputQueryable, string code)
         {
             return
                 inputQueryable.Where(

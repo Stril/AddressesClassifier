@@ -53,7 +53,7 @@ namespace AddressesClassifier.Interfaces
         /// <param name="inputQueryable"></param>
         /// <param name="code"></param>
         /// <returns></returns>
-        IQueryable<Region> GetTownsByRegion(IQueryable<Region> inputQueryable, string code);
+        IQueryable<Region> GetTownsByDistrict(IQueryable<Region> inputQueryable, string code);
 
         /// <summary>
         /// Получение списка улиц по коду населенного пункта
